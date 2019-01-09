@@ -1,2 +1,68 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+
+mysql>create database rezodb default character set utf8;
+
+mysql>use rezodb;
+
+mysql>create table item_category(category_id int,category_name varchar(256));
+
+mysql>create table item(item_id int,item_name varchar(256),item_price int,category_id int);
+
+mysql>insert into item_category values(1,'家具');
+
+mysql>insert into item_category values(2,'食品');
+
+mysql>insert into item_category values(3,'本');
+
+mysql>insert into item values(1,'堅牢な机',3000,1);
+
+mysql>insert into item values(2,'生焼け肉',50,2);
+
+mysql>insert into item values(3,'すっきりわかるJava入門',3000,3);
+
+mysql>insert into item values(4,'おしゃれな椅子',2000,1);
+
+mysql>insert into item values(5,'こんがり肉',500,2);
+
+mysql>insert into item values(6,'書き方ドリルSQL',2500,3);
+
+mysql>insert into item values(7,'ふわふわのベッド',30000,1);
+
+mysql>insert into item values(8,'ミラノ風ドリア',300,2);
+
+mysql>select item_name,item_price from item where category_id=1;
+
+mysql>select item_name,item_price from item where item_price>1000;
+
+mysql>select item_name,item_price from item where item_name like '%肉%';
+
+mysql>select 
+      
+      item_id,item_name,item_price,category_name 
+
+      from item inner join 
+
+      item_category 
+
+      on item.category_id =item_category.category_id;
+
+mysql>select category_name,sum(item_price) as total_price 
+
+      from item inner join item_category 
+
+      on item.category_id = item_category.category_id 
+
+      group by category_name 
+
+      order by total_price desc;
+
+
+
+
+
+
+
+
+
